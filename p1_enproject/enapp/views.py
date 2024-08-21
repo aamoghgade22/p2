@@ -22,3 +22,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
 
+def index(request):
+	tasks=Task.objects.all()
+	return render(request, 'home.html', {'tasks': tasks})

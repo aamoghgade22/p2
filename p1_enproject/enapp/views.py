@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .models import Task
 from .serializers import TaskSerializer
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
@@ -22,6 +23,8 @@ class TaskViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
 
+@login_required
 def index(request):
-	tasks=Task.objects.all()
-	return render(request, 'home.html', {'tasks': tasks})
+    user = request.user
+    tasks = Task.objects.filter(user=user)
+    return render(request, 'home.html', {'tasks': tasks})

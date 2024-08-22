@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-
+from datetime import datetime, timedelta
 from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -140,10 +140,20 @@ REST_FRAMEWORK = {
     ),
 }
 
+def custom_jwt_payload_handler(user):
+    return {
+        'user_id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'exp': datetime.utcnow() + timedelta(hours=24),
+        'is_admin': user.is_staff,
+    }
+
 
 # JWT settings (default values are usually sufficient)
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'JWT_PAYLOAD_HANDLER': 'enapp.utils.custom_jwt_payload_handler',
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,

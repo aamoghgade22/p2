@@ -24,8 +24,6 @@ from rest_framework_simplejwt.views import TokenVerifyView
 from enapp.views import  BookViewSet, MyTokenObtainPairView, StudentGeneric, StudentGeneric1, TaskViewSet, index
 from rest_framework.routers import DefaultRouter
 
-
-
 # Schema view for Swagger
 schema_view = get_schema_view(
     openapi.Info(
@@ -40,25 +38,11 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-
-router = DefaultRouter()
-router.register(r'books', BookViewSet)
-router.register(r'tasks', TaskViewSet)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",index),
     # Swagger and Redoc URLs
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    # JWT
-    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    # generic
-    path('student/',StudentGeneric.as_view()),
-    path('student/<id>/',StudentGeneric1.as_view()),
-    # For books using GenericViewSet and tasks
-    path('', include(router.urls))
+    # Include all URLs from enapp
+    path('', include('enapp.urls')),  # This will include all routes from enapp
 ]
-

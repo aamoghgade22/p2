@@ -1,12 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import StudentGeneric, TaskViewSet
+from .views import BookViewSet, StudentGeneric, TaskViewSet
 
-# Create a router and register our viewset with it
 router = DefaultRouter()
 router.register(r'tasks', TaskViewSet)
+router.register(r'books', BookViewSet)
+
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', include(router.urls)),# automatically creates for books and tasks
 ]

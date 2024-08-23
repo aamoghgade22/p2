@@ -17,7 +17,7 @@ class Task(models.Model):
         return self.title
 
 
-# FOR GENERIC VIEWSET
+# FOR GENERICs
 class Student(models.Model):
     name=models.CharField(max_length=100)
     age = models.IntegerField()
@@ -26,3 +26,13 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+    
+# FOR GENERICVIEWSET
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    pages = models.IntegerField()
+    language = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.title

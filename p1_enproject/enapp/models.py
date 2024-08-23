@@ -15,3 +15,14 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# FOR GENERIC VIEWSET
+class Student(models.Model):
+    name=models.CharField(max_length=100)
+    age = models.IntegerField()
+    address = models.TextField(blank=True)
+    isActive = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name

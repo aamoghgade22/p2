@@ -75,8 +75,9 @@ class BookViewSet(GenericViewSet):
     def list(self, request):
         books = self.get_queryset()
         serializer = self.get_serializer(books, many=True)
+        print(serializer.data)
         return Response(serializer.data)
-
+        
     def retrieve(self, request, pk=None):
         book = self.get_object()
         serializer = self.get_serializer(book)

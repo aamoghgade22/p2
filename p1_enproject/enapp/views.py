@@ -20,8 +20,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class =MyTokenObtainPairSerializer
 
-
-##  MODEL VIEWSET - Only 3 lines
+##  MODELVIEWSET - Only 3 lines
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()

@@ -21,7 +21,12 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.views import TokenVerifyView
-from enapp.views import  MyTokenObtainPairView, StudentGeneric, StudentGeneric1, index
+from enapp.views import  BookViewSet, MyTokenObtainPairView, StudentGeneric, StudentGeneric1, index
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'books', BookViewSet)
+
 # Schema view for Swagger
 schema_view = get_schema_view(
     openapi.Info(
@@ -50,7 +55,9 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     # generic
-    path('generic-student/',StudentGeneric.as_view()),
-    path('generic-student/<id>/',StudentGeneric1.as_view()),
+    path('student/',StudentGeneric.as_view()),
+    path('student/<id>/',StudentGeneric1.as_view()),
+    # For books using GenericViewSet
+    path('books/', include(router.urls))
 ]
 

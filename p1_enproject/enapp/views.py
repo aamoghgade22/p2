@@ -100,6 +100,7 @@ class BookViewSet(GenericViewSet):
         self.perform_destroy(book)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    # in case of customization
     def perform_create(self, serializer):
         serializer.save()
 

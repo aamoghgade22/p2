@@ -154,7 +154,7 @@ def custom_jwt_payload_handler(user):
 
 # JWT settings (default values are usually sufficient)
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'JWT_PAYLOAD_HANDLER': 'enapp.utils.custom_jwt_payload_handler',
     'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
     'ROTATE_REFRESH_TOKENS': True,

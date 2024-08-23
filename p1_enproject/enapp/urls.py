@@ -4,10 +4,7 @@ from .views import BookViewSet, StudentGeneric, TaskViewSet
 
 router = DefaultRouter()
 router.register(r'tasks', TaskViewSet)
-router.register(r'books', BookViewSet)
 
-
-# The API URLs are now determined automatically by the router.
 urlpatterns = [
-    path('', include(router.urls)),# automatically creates for books and tasks
+    path('', include(router.urls)),
 ]

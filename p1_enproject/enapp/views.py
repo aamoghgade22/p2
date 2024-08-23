@@ -31,7 +31,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
-    #overriding some method
+    #overriding some methods
     def get_queryset(self):
         user = self.request.user
         if user.is_authenticated:

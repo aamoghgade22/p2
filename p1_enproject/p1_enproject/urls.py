@@ -19,9 +19,6 @@ from django.urls import path,include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView,TokenVerifyView
-from enapp.views import  BookViewSet, MyTokenObtainPairView, StudentGeneric, StudentGeneric1, TaskViewSet, index
-from rest_framework.routers import DefaultRouter
 
 # Schema view for Swagger
 schema_view = get_schema_view(

@@ -27,11 +27,11 @@ from rest_framework.routers import DefaultRouter
 # Schema view for Swagger
 schema_view = get_schema_view(
     openapi.Info(
-        title="Task API",
+        title="Your API",
         default_version='v1',
-        description="API documentation for managing tasks",
+        description="Test description",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@example.com"),
+        contact=openapi.Contact(email="contact@yourapi.local"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
@@ -41,7 +41,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Swagger and Redoc URLs
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     # Include all URLs from enapp
     path('', include('enapp.urls')),  # This will include all routes from enapp

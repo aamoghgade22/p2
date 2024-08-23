@@ -170,4 +170,19 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT Authorization header using the Bearer scheme.'
+        }
+    },
+    'SECURITY': [
+        {'Bearer': []}
+    ],
+}
+
+
 CORS_ALLOW_ALL_ORIGINS=True

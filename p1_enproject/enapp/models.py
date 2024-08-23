@@ -33,3 +33,11 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+# For mixins and genericviewset
+class Car(models.Model):
+    name = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    price = models.IntegerField()
+    def __str__(self):
+        return self.name

@@ -1,7 +1,7 @@
 from urllib import response
 from django.shortcuts import render
-from .models import Book, Student, Task
-from .serializers import BookSerializer, StudentSerializer, TaskSerializer
+from .models import Book, Car, Student, Task
+from .serializers import BookSerializer, CarSerializer, StudentSerializer, TaskSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -9,6 +9,7 @@ from rest_framework import generics,status,viewsets
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny,IsAuthenticated
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin,UpdateModelMixin,DestroyModelMixin
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -105,3 +106,10 @@ class BookViewSet(GenericViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+# ModelMixins with GenericViewSet
+
+class CarViewSet(ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin,DestroyModelMixin,GenericViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    permission_classes = [AllowAny]  # does not require authentication now else it inherits global

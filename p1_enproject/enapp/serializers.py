@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student, Task,Book
+from .models import Car, Student, Task,Book
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,3 +19,9 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = '__all__'
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = '__all__'
+

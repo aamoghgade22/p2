@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Student, Task
+from .models import Book, Car, Student, Task
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("id","user","title", "description", "status")
@@ -23,3 +23,11 @@ class BooksAdmin(admin.ModelAdmin):
     ordering = ["id"] 
 
 admin.site.register(Book,BooksAdmin)
+
+class CarsAdmin(admin.ModelAdmin):
+    list_display = ("name","model", "price",)
+    search_fields = ["name"]
+    list_per_page = 10
+    ordering = ["id"] 
+
+admin.site.register(Car,CarsAdmin)

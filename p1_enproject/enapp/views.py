@@ -63,7 +63,8 @@ class StudentGeneric1 (generics.UpdateAPIView,generics.DestroyAPIView):
     serializer_class=StudentSerializer
     lookup_field="id"
 
-# GENERICVIEWSET
+## GENERICVIEWSET
+
 class BookViewSet(GenericViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer

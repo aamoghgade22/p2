@@ -1,17 +1,14 @@
 from urllib import response
 from django.shortcuts import render
-from rest_framework import viewsets
 from .models import Book, Student, Task
 from .serializers import BookSerializer, StudentSerializer, TaskSerializer
-from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import generics
+from rest_framework import generics,status,viewsets
 from rest_framework.viewsets import GenericViewSet
-from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod

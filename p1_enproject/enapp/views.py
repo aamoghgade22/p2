@@ -11,6 +11,7 @@ from rest_framework import generics
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -68,6 +69,7 @@ class StudentGeneric1 (generics.UpdateAPIView,generics.DestroyAPIView):
 class BookViewSet(GenericViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    permission_classes = [AllowAny]  # does not require authentication now else it inherits global
 
     def list(self, request):
         books = self.get_queryset()
